@@ -3,8 +3,11 @@ package Grafos;
 public class ImplemEstatica implements GrafosTDA {
 	
 	int indice ;
+
 	int[][] matrizAdy;
-	int dim ; 
+
+	int dim ;
+
 	int [] etiquetas;
 	
 	public void inicializarGrafo(int dim) {
@@ -12,7 +15,6 @@ public class ImplemEstatica implements GrafosTDA {
 		indice = 0;
 		matrizAdy = new int[dim][dim];		
 		etiquetas = new int[dim];
-		
 	}
 	
 	public void agregarVertice(int v) {
@@ -23,20 +25,22 @@ public class ImplemEstatica implements GrafosTDA {
 				matrizAdy[indice][i] = 0;
 			}
 			indice ++;
-		}else {
+		} else {
 			System.out.println("No se puden agregar mas nodos");
 		}		
 	}
 	
 	public int posicionDeNodo(int v) {
+
 		for(int i = 0;  i < indice ; i++) {
 			if(etiquetas[i] == v) {
 				return i;
 			}
 		}
+
 		return -1;
-		
 	}
+
 	public void eliminarVertice(int v) {
 		int aux = this.posicionDeNodo(v);
 		if(aux != -1) {
@@ -68,8 +72,7 @@ public class ImplemEstatica implements GrafosTDA {
 		System.out.println();
 		return aux;
 	}
-	
-	
+
 	public void eliminarArista(int v1, int v2) {
 		
 		if(this.posicionDeNodo(v1)>=0 && this.posicionDeNodo(v2)>=0) {
@@ -78,21 +81,11 @@ public class ImplemEstatica implements GrafosTDA {
 			System.out.println("No existe alguno de los nodos");
 		}
 	}
-	
-
-
 
 	public boolean existeArista(int v1, int v2) {
-
-		return false;
+		return this.matrizAdy[this.posicionDeNodo(v1)][this.posicionDeNodo(v2)] != 0;
 	}
 
-	@Override
-	public int pesoArista(int v1, int v2) {
-	
-		return 0;
-	}
-	
 	public void mostrarMatriz() {
 		System.out.print("\t");
 		this.vertices();
@@ -105,12 +98,15 @@ public class ImplemEstatica implements GrafosTDA {
 			System.out.println("\n");
 		}
 	}
+
 	public boolean pertenece(int x) {
-		return 	(this.posicionDeNodo(x) != -1) ;
+		return this.posicionDeNodo(x) != -1;
 	}
 	
 	public int mayorArista(int v) {
+
 		int fila = this.posicionDeNodo(v);
+
 		if(v != -1) {
 			int aux = 0;
 			for(int i = 0; i < indice; i++) {
@@ -120,51 +116,66 @@ public class ImplemEstatica implements GrafosTDA {
 			}
 		
 			return aux ;
-		}else {
+		} else {
 			System.out.println("El nodo no se encuentra");
 			return v;
 		}
 	}
 	
 	public int[] conjuntoAislados() {
+
 		int[] aislados = new int [indice];
+
 		int flag = 0;
+
 		for(int i = 0 ; i < indice ; i ++) {
+
 			flag = 0;
+
 			for(int j = 0 ; j < indice ; j++) {
 				if( matrizAdy[i][j] != 0 || matrizAdy[j][i] !=0)  {
 					flag = 1;
 					break;
 				}				
 			}
+
 			if(flag == 0) {
 				aislados[i]= etiquetas[i];
 				System.out.print(aislados[i] + "\t");
 			}
 		}
+
 		return aislados;
 			
 	}
 	
 	public void imparAristas() {
+
 		int contar ;
+
 		for(int i = 0; i < indice; i ++) {
+
 			contar = 0;
+
 			for(int j = 0; j < indice; j++) {
 				if(matrizAdy[i][j] != 0) {
 					contar++;
 				}
 			}
+
 			if(contar % 2 != 0) {
 				System.out.print(etiquetas[i] + "\t");
 			}
 		}
 	}
 
-	@Override
+	public int pesoArista(int v1, int v2) {
+		return this.existeArista(v1, v2)
+				? this.matrizAdy[this.posicionDeNodo(v1)][this.posicionDeNodo(v2)]
+				: -1;
+	}
+
 	public int[] dephtFirstSearch() {
 		return null;
 	}
-	
-	
 }

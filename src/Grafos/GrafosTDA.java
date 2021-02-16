@@ -29,6 +29,5 @@ public interface GrafosTDA {
 	public void imparAristas();
 	
 	public int[] dephtFirstSearch();
-	
-	
+
 }

@@ -19,6 +19,8 @@ para la implementación de los algoritmos elegidos.
 __Nota:__   
 Todos los archivos de configuración, ejemplos de entrada y cualquier otro recurso deben ser anexados al proyecto dentro de una carpeta /resources.
 
+___
+
 __Author__  
 Leonardo Pardo
 

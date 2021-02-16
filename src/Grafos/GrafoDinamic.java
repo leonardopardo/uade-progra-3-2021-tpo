@@ -1,13 +1,16 @@
 package Grafos;
 
 public class GrafoDinamic implements GrafosTDA {
+
 	NodoGrafo nodo;
+
 	int cantidad;
 
 	public void inicializarGrafo(int dim) {
 		nodo = null;
 		cantidad = 0;
 	}
+
 	public void eliminarVertice(int v) {
 		NodoGrafo aux = encontrarNodo(v);
 		
@@ -31,30 +34,36 @@ public class GrafoDinamic implements GrafosTDA {
 		}else {
 			System.out.println("El vertice no existe");
 		}
-
-		
 	}
 
 	public void agregarVertice(int v) {
 		if(this.encontrarNodo(v) == null) {
-			
-		
 			NodoGrafo aux = new NodoGrafo();
 			aux.valor = v;
 			aux.lista = null;
-			aux.sig = nodo;
-			aux.Visitado = false;
+			aux.sig = this.nodo;
+			aux.visitado = false;
 			aux.marcado = false;
 			nodo = aux;
 			cantidad++;
-		}	
-			
+		}
 	}
-
 	
 	public int[] vertices() {
-		
-		return null;
+
+		NodoGrafo actual = this.nodo;
+
+		int[] vs = new int[this.cantidad];
+
+		int i = 0;
+
+		while (actual != null){
+			vs[i] = actual.valor;
+			actual = actual.sig;
+			i++;
+		}
+
+		return vs;
 	}
 
 	public void agregarArista(int v1, int v2, int peso) {
@@ -70,9 +79,7 @@ public class GrafoDinamic implements GrafosTDA {
 			System.out.println("No existe alguino de los noods");
 		}
 	}
-	
 
-	
 	public void eliminarArista(int v1, int v2) {
 		NodoGrafo nodo = encontrarNodo(v1);
 		NodoArista arista = nodo.lista;
@@ -90,9 +97,6 @@ public class GrafoDinamic implements GrafosTDA {
 			}			
 		}
 	}
-	
-	
-
 
 	public boolean existeArista(int v1, int v2) {
 		NodoGrafo aux = this.encontrarNodo(v1);
@@ -110,7 +114,6 @@ public class GrafoDinamic implements GrafosTDA {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 
 	public void mostrarMatriz() {
 		NodoGrafo aux = nodo;
@@ -145,14 +148,13 @@ public class GrafoDinamic implements GrafosTDA {
 		NodoGrafo aux = nodo;
 		
 		while(aux != null) {
-			
+			// code here...
 		}
 		return null;
 	}
 
 	public void imparAristas() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public NodoGrafo encontrarNodo(int v) {

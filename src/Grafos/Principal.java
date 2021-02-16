@@ -1,7 +1,6 @@
 package Grafos;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Principal {
 
@@ -52,11 +51,11 @@ public class Principal {
 	} 
 	
 	public static void visitarNodo(NodoGrafo nodo, ArrayList<Integer> lista ) {
-		nodo.Visitado = true;
+		nodo.visitado = true;
 		NodoArista aux = nodo.lista; 
 		
 		while(aux != null) {
-			if(!aux.apunta.Visitado) {
+			if(!aux.apunta.visitado) {
 				visitarNodo(aux.apunta, lista);
 			}
 			else {
@@ -74,14 +73,14 @@ public class Principal {
 	
 	public static void visitarNodobfs(NodoGrafo nodo, ArrayList<Integer> lista) {
 		NodoArista aux = nodo.lista;
-		if(!nodo.Visitado) {
-				nodo.Visitado = true;
+		if(!nodo.visitado) {
+				nodo.visitado = true;
 				//System.out.println(nodo.valor);
 				lista.add(nodo.valor);
 		}
 		while(aux != null) {
-			if(!aux.apunta.Visitado) {
-				aux.apunta.Visitado = true;
+			if(!aux.apunta.visitado) {
+				aux.apunta.visitado = true;
 				//System.out.println(aux.apunta.valor);
 				lista.add(aux.apunta.valor);
 				}
@@ -106,7 +105,7 @@ public class Principal {
 			
 		NodoGrafo auxNodo = nodo;
 		NodoArista aux; 
-		auxNodo.Visitado = true;
+		auxNodo.visitado = true;
 		GrafoDinamic arbol = new GrafoDinamic();
 		int indice = 0;
 		arbol.agregarVertice(nodo.valor);	
@@ -125,7 +124,7 @@ public class Principal {
 			if(indice != -1) {
 				aux = aristas.get(indice);
 				arbol.agregarVertice(aux.apunta.valor);
-				aux.apunta.Visitado = true;
+				aux.apunta.visitado = true;
 				arbol.agregarArista(aux.origen, aux.apunta.valor, aux.peso);			
 				aristas.remove(indice);
 				nodos.add(aux.apunta);
@@ -143,7 +142,7 @@ public class Principal {
 		int menor = 1000;
 		int posicion = -1;
 		for(int i = 0; i < array.size(); i++) {
-			if(array.get(i).peso < menor && !array.get(i).apunta.Visitado) {
+			if(array.get(i).peso < menor && !array.get(i).apunta.visitado) {
 				menor = array.get(i).peso ; 
 				posicion = i;
 			}
@@ -169,12 +168,12 @@ public class Principal {
 		//mostrarAristas(aristas);
 		for(int i = 0; i < aristas.size(); i++) {
 			//System.out.println(i);
-			if(!(aristas.get(i).apunta.Visitado && grafo.encontrarNodo(aristas.get(i).origen).Visitado)){
+			if(!(aristas.get(i).apunta.visitado && grafo.encontrarNodo(aristas.get(i).origen).visitado)){
 					kruskal.agregarVertice(aristas.get(i).origen);
-					grafo.encontrarNodo(aristas.get(i).origen).Visitado = true;
+					grafo.encontrarNodo(aristas.get(i).origen).visitado = true;
 					//System.out.println(i);
 					kruskal.agregarVertice(aristas.get(i).apunta.valor);
-					aristas.get(i).apunta.Visitado = true;
+					aristas.get(i).apunta.visitado = true;
 					kruskal.agregarArista(aristas.get(i).origen, aristas.get(i).apunta.valor, aristas.get(i).peso);
 				}
 			}
