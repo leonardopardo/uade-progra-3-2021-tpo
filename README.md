@@ -5,11 +5,11 @@ Curso Verano 2021
 
 ## Enunciado
 Usted va a recibir la Clase Grafo implementada en Java y deberá implementar 3 (dos) de los siguientes algoritmos
-- Algoritmo Breadth-First Search (BFS)
+- __Algoritmo Breadth-First Search (BFS)__
 - Algoritmo Depth-First Search (DFS)
 - Algoritmo de Prim
 - Algoritmo de Kruskal
-- Algoritmo de Dijsktra
+- __Algoritmo de Dijsktra__
 - Algoritmo de Floyd
 
 
