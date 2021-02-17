@@ -37,7 +37,7 @@ public class Bfs {
 
         while(!fila.isEmpty()){
             int actual = fila.poll();
-            int[] adyacentes = { 1, 2, 3, 4, 5 }; // <- reemplazar por lista de vertices adyacentes
+            int[] adyacentes = { 1, 2, 3, 4, 5 }; // TODO: reemplazar por lista de vertices adyacentes.
 
             for (int i = 0; i < adyacentes.length; i++) {
                 if(marca.get(adyacentes[i]) == Estado.NO_VISITADO) {

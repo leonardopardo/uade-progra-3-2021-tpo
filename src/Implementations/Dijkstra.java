@@ -14,11 +14,6 @@ import java.util.*;
  */
 public class Dijkstra {
 
-
-    public static void route(GrafosTDA grafo) {
-
-    }
-
     public static void route(GrafosTDA grafo, int[][] matrizaAdy, int origen){
 
         Dictionary<Integer, Integer> D = new Hashtable<>();
@@ -44,7 +39,7 @@ public class Dijkstra {
             int menor = adyacente_de_menor_costo(Q); //
             conjuntoSolucion.add(menor);
 
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < lista_de_adyacentes_de_un_vertice(grafo, menor).length; i++) {
                 if(D.get(i) > D.get(i) + matrizaAdy[menor][0]) {
                     D.put(i, D.get(i) + matrizaAdy[menor][0]);
                     P.put(0, menor);
@@ -54,6 +49,21 @@ public class Dijkstra {
 
     }
 
+    /**
+     * TODO: RESOLVER
+     * @param grafo
+     * @param v
+     * @return
+     */
+    private static int[] lista_de_adyacentes_de_un_vertice(GrafosTDA grafo, int v){
+        return new int[0];
+    }
+
+    /**
+     * TODO: RESOLVER
+     * @param vertices
+     * @return
+     */
     private static int adyacente_de_menor_costo(List<Integer> vertices) {
         return 0;
     }
@@ -71,6 +81,12 @@ public class Dijkstra {
                 : 0;
     }
 
+    /**
+     * Calcula si un entero dado es potencia de 2.
+     * Retorna verdadero en caso afirmativa, falso en caso contrario.
+     * @param x
+     * @return
+     */
     private static boolean esPotenciaDeDos(int x)
     {
         return (x != 0) && ((x & (x - 1)) == 0);
