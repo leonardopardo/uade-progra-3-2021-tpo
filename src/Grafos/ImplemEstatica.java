@@ -9,14 +9,16 @@ public class ImplemEstatica implements GrafosTDA {
 	int dim ;
 
 	int [] etiquetas;
-	
+
+	@Override
 	public void inicializarGrafo(int dim) {
 		this.dim = dim ;
 		indice = 0;
 		matrizAdy = new int[dim][dim];		
 		etiquetas = new int[dim];
 	}
-	
+
+	@Override
 	public void agregarVertice(int v) {
 		if(indice < dim) {
 			etiquetas[indice] = v;			
@@ -29,18 +31,8 @@ public class ImplemEstatica implements GrafosTDA {
 			System.out.println("No se puden agregar mas nodos");
 		}		
 	}
-	
-	public int posicionDeNodo(int v) {
 
-		for(int i = 0;  i < indice ; i++) {
-			if(etiquetas[i] == v) {
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
+	@Override
 	public void eliminarVertice(int v) {
 		int aux = this.posicionDeNodo(v);
 		if(aux != -1) {
@@ -54,7 +46,8 @@ public class ImplemEstatica implements GrafosTDA {
 			System.out.println("No se encontro el vertice");
 		}	
 	}
-	
+
+	@Override
 	public void agregarArista(int v1, int v2, int peso) {
 		if(this.posicionDeNodo(v1) != -1 && this.posicionDeNodo(v2) != -1) {
 			matrizAdy[this.posicionDeNodo(v1)][this.posicionDeNodo(v2)] = peso;
@@ -62,7 +55,8 @@ public class ImplemEstatica implements GrafosTDA {
 			System.out.println("Alguno de los nodos no existe");
 		}
 	}
-	
+
+	@Override
 	public int[] vertices() {
 		int[] aux = new int[indice];
 		for(int i = 0; i < indice; i++) {
@@ -73,6 +67,7 @@ public class ImplemEstatica implements GrafosTDA {
 		return aux;
 	}
 
+	@Override
 	public void eliminarArista(int v1, int v2) {
 		
 		if(this.posicionDeNodo(v1)>=0 && this.posicionDeNodo(v2)>=0) {
@@ -82,10 +77,12 @@ public class ImplemEstatica implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public boolean existeArista(int v1, int v2) {
 		return this.matrizAdy[this.posicionDeNodo(v1)][this.posicionDeNodo(v2)] != 0;
 	}
 
+	@Override
 	public void mostrarMatriz() {
 		System.out.print("\t");
 		this.vertices();
@@ -99,10 +96,12 @@ public class ImplemEstatica implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public boolean pertenece(int x) {
 		return this.posicionDeNodo(x) != -1;
 	}
-	
+
+	@Override
 	public int mayorArista(int v) {
 
 		int fila = this.posicionDeNodo(v);
@@ -121,7 +120,8 @@ public class ImplemEstatica implements GrafosTDA {
 			return v;
 		}
 	}
-	
+
+	@Override
 	public int[] conjuntoAislados() {
 
 		int[] aislados = new int [indice];
@@ -148,7 +148,8 @@ public class ImplemEstatica implements GrafosTDA {
 		return aislados;
 			
 	}
-	
+
+	@Override
 	public void imparAristas() {
 
 		int contar ;
@@ -169,13 +170,31 @@ public class ImplemEstatica implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public int pesoArista(int v1, int v2) {
 		return this.existeArista(v1, v2)
 				? this.matrizAdy[this.posicionDeNodo(v1)][this.posicionDeNodo(v2)]
 				: -1;
 	}
 
+	@Override
 	public int[] dephtFirstSearch() {
 		return null;
+	}
+
+	@Override
+	public int[] adyacentes(int v) {
+		return new int[0];
+	}
+
+	public int posicionDeNodo(int v) {
+
+		for(int i = 0;  i < indice ; i++) {
+			if(etiquetas[i] == v) {
+				return i;
+			}
+		}
+
+		return -1;
 	}
 }

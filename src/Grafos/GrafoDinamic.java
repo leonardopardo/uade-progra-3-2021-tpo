@@ -6,11 +6,13 @@ public class GrafoDinamic implements GrafosTDA {
 
 	int cantidad;
 
+	@Override
 	public void inicializarGrafo(int dim) {
 		nodo = null;
 		cantidad = 0;
 	}
 
+	@Override
 	public void eliminarVertice(int v) {
 		NodoGrafo aux = encontrarNodo(v);
 		
@@ -36,6 +38,7 @@ public class GrafoDinamic implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public void agregarVertice(int v) {
 		if(this.encontrarNodo(v) == null) {
 			NodoGrafo aux = new NodoGrafo();
@@ -48,7 +51,8 @@ public class GrafoDinamic implements GrafosTDA {
 			cantidad++;
 		}
 	}
-	
+
+	@Override
 	public int[] vertices() {
 
 		NodoGrafo actual = this.nodo;
@@ -66,6 +70,7 @@ public class GrafoDinamic implements GrafosTDA {
 		return vs;
 	}
 
+	@Override
 	public void agregarArista(int v1, int v2, int peso) {
 		if(this.encontrarNodo(v1) != null && this.encontrarNodo(v2) != null) {
 			NodoArista aux = new NodoArista();
@@ -80,6 +85,7 @@ public class GrafoDinamic implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public void eliminarArista(int v1, int v2) {
 		NodoGrafo nodo = encontrarNodo(v1);
 		NodoArista arista = nodo.lista;
@@ -98,6 +104,7 @@ public class GrafoDinamic implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public boolean existeArista(int v1, int v2) {
 		NodoGrafo aux = this.encontrarNodo(v1);
 		NodoArista arista = aux.lista ;
@@ -110,11 +117,13 @@ public class GrafoDinamic implements GrafosTDA {
 		return false;
 	}
 
+	@Override
 	public int pesoArista(int v1, int v2) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public void mostrarMatriz() {
 		NodoGrafo aux = nodo;
 		NodoArista arista;
@@ -131,6 +140,7 @@ public class GrafoDinamic implements GrafosTDA {
 		}
 	}
 
+	@Override
 	public boolean pertenece(int x) {
 		if (this.encontrarNodo(x) != null) {
 			return true;
@@ -138,11 +148,13 @@ public class GrafoDinamic implements GrafosTDA {
 		return false;
 	}
 
+	@Override
 	public int mayorArista(int v) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int[] conjuntoAislados() {
 		int aislados[]= new int [cantidad];
 		NodoGrafo aux = nodo;
@@ -153,10 +165,21 @@ public class GrafoDinamic implements GrafosTDA {
 		return null;
 	}
 
+	@Override
 	public void imparAristas() {
 		// TODO Auto-generated method stub
 	}
-	
+
+	@Override
+	public int[] dephtFirstSearch() {
+		return null;
+	}
+
+	@Override
+	public int[] adyacentes(int v) {
+		return new int[0];
+	}
+
 	public NodoGrafo encontrarNodo(int v) {
 		NodoGrafo aux = nodo;
 		while(aux != null) {
@@ -167,9 +190,4 @@ public class GrafoDinamic implements GrafosTDA {
 		}
 		return null;
 	}
-
-	public int[] dephtFirstSearch() {
-		return null;
-	}
-
 }

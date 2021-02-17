@@ -30,4 +30,5 @@ public interface GrafosTDA {
 	
 	public int[] dephtFirstSearch();
 
+	public int[] adyacentes(int v);
 }

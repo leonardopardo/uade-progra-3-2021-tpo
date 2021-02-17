@@ -31,7 +31,7 @@ public class Bfs {
         marca.put(origen, Estado.DESCUBIERTO);
 
         // Creo mi estructura de fila (FIFO)
-        // y le agrego el primer elemento y que este es visitado obligatoriamente.
+        // y le agrego el primer elemento porque este es visitado obligatoriamente.
         Queue<Integer> fila = new LinkedList<Integer>();
         fila.add(origen);
 
