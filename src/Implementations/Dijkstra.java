@@ -36,7 +36,7 @@ public class Dijkstra {
         Queue<Integer> conjuntoSolucion = new LinkedList<Integer>();
 
         while(!Q.isEmpty()){
-            int menor = adyacente_de_menor_costo(Q); //
+            int menor = adyacente_de_menor_costo(grafo, origen); // TODO: VERFICAR DESCANSADO
             conjuntoSolucion.add(menor);
 
             for (int i = 0; i < lista_de_adyacentes_de_un_vertice(grafo, menor).length; i++) {
@@ -56,16 +56,21 @@ public class Dijkstra {
      * @return
      */
     private static int[] lista_de_adyacentes_de_un_vertice(GrafosTDA grafo, int v){
-        return new int[0];
+
+        return grafo.adyacentes(v);
     }
 
     /**
      * TODO: RESOLVER
-     * @param vertices
+     * @param
      * @return
      */
-    private static int adyacente_de_menor_costo(List<Integer> vertices) {
-        return 0;
+    private static int adyacente_de_menor_costo(GrafosTDA grafo, int v) {
+
+        return Arrays
+                .stream(grafo.adyacentes(v))
+                .min()
+                .getAsInt();
     }
 
     /**

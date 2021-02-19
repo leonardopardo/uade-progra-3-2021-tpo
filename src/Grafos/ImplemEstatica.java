@@ -1,5 +1,7 @@
 package Grafos;
 
+import java.util.ArrayList;
+
 public class ImplemEstatica implements GrafosTDA {
 	
 	int indice ;
@@ -184,7 +186,20 @@ public class ImplemEstatica implements GrafosTDA {
 
 	@Override
 	public int[] adyacentes(int v) {
-		return new int[0];
+
+		int[] fila = this.matrizAdy[posicionDeNodo(v)];
+
+		ArrayList<Integer> output = new ArrayList<>();
+
+		for (int i = 0; i < fila.length ; i++) {
+			if(fila[i] > 0)
+				output.add(this.etiquetas[i]);
+		}
+
+		return output
+				.stream()
+				.mapToInt(i -> i)
+				.toArray();
 	}
 
 	public int posicionDeNodo(int v) {

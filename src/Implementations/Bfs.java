@@ -35,9 +35,11 @@ public class Bfs {
         Queue<Integer> fila = new LinkedList<Integer>();
         fila.add(origen);
 
+        Queue<Integer> padres = new LinkedList<>();
+
         while(!fila.isEmpty()){
             int actual = fila.poll();
-            int[] adyacentes = { 1, 2, 3, 4, 5 }; // TODO: reemplazar por lista de vertices adyacentes.
+            int[] adyacentes = grafo.adyacentes(actual);
 
             for (int i = 0; i < adyacentes.length; i++) {
                 if(marca.get(adyacentes[i]) == Estado.NO_VISITADO) {
@@ -45,9 +47,14 @@ public class Bfs {
                     fila.add(adyacentes[i]);
                 }
             }
+
             marca.put(actual, Estado.VISITADO);
+
+            if(marca.get(actual) == Estado.VISITADO )
+                padres.add(actual);
+
         }
 
-        return fila;
+        return padres;
     }
 }
