@@ -63,9 +63,9 @@ public class ImplemEstatica implements GrafosTDA {
 		int[] aux = new int[indice];
 		for(int i = 0; i < indice; i++) {
 			aux[i] = etiquetas[i];
-			System.out.print(aux[i] + "\t");
+			//System.out.print(aux[i] + "\t");
 		}
-		System.out.println();
+		// System.out.println();
 		return aux;
 	}
 
@@ -99,6 +99,11 @@ public class ImplemEstatica implements GrafosTDA {
 	}
 
 	@Override
+	public int[][] matriz() {
+		return this.matrizAdy;
+	}
+
+	@Override
 	public boolean pertenece(int x) {
 		return this.posicionDeNodo(x) != -1;
 	}
@@ -116,6 +121,25 @@ public class ImplemEstatica implements GrafosTDA {
 				}
 			}
 		
+			return aux ;
+		} else {
+			System.out.println("El nodo no se encuentra");
+			return v;
+		}
+	}
+
+	@Override
+	public int menorArista(int v){
+		int fila = this.posicionDeNodo(v);
+
+		if(v != -1) {
+			int aux = 0;
+			for(int i = 0; i < indice; i++) {
+				if(aux > matrizAdy[fila][i]) {
+					aux = matrizAdy[fila][i];
+				}
+			}
+
 			return aux ;
 		} else {
 			System.out.println("El nodo no se encuentra");
@@ -192,8 +216,7 @@ public class ImplemEstatica implements GrafosTDA {
 		ArrayList<Integer> output = new ArrayList<>();
 
 		for (int i = 0; i < fila.length ; i++) {
-			if(fila[i] > 0)
-				output.add(this.etiquetas[i]);
+			if(fila[i] > 0) output.add(this.etiquetas[i]);
 		}
 
 		return output

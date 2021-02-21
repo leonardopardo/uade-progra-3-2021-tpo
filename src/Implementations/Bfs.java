@@ -16,6 +16,7 @@ public class Bfs {
      */
     public static Queue<Integer> route(GrafosTDA grafo, int origen)
     {
+        // Estructura auxiliar con estado de los vertices.
         Dictionary<Integer, Estado> marca = new Hashtable<>();
 
         int[] vertices = grafo.vertices();
@@ -35,8 +36,10 @@ public class Bfs {
         Queue<Integer> fila = new LinkedList<Integer>();
         fila.add(origen);
 
+        // Arreglo de padres ordenados conforme a como se fueron visitando.
         Queue<Integer> padres = new LinkedList<>();
 
+        // Core
         while(!fila.isEmpty()){
             int actual = fila.poll();
             int[] adyacentes = grafo.adyacentes(actual);
@@ -49,10 +52,7 @@ public class Bfs {
             }
 
             marca.put(actual, Estado.VISITADO);
-
-            if(marca.get(actual) == Estado.VISITADO )
-                padres.add(actual);
-
+            padres.add(actual);
         }
 
         return padres;

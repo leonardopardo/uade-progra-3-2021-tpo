@@ -141,6 +141,11 @@ public class GrafoDinamic implements GrafosTDA {
 	}
 
 	@Override
+	public int[][] matriz() {
+		return new int[0][];
+	}
+
+	@Override
 	public boolean pertenece(int x) {
 		if (this.encontrarNodo(x) != null) {
 			return true;
@@ -151,6 +156,11 @@ public class GrafoDinamic implements GrafosTDA {
 	@Override
 	public int mayorArista(int v) {
 		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int menorArista(int v) {
 		return 0;
 	}
 
