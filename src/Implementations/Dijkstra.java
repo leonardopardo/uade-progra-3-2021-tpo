@@ -52,6 +52,10 @@ fin función.
 
 public class Dijkstra {
 
+    public Dijkstra() {
+
+    }
+
     public static int[] route(GrafosTDA grafo, int[][] matrizAdy, int origen) {
         Dictionary<Integer, Integer> D = new Hashtable<>();
         Dictionary<Integer, Integer> P = new Hashtable<>();

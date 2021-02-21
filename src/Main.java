@@ -1,76 +1,80 @@
 import Grafos.GrafosTDA;
 import Grafos.ImplemEstatica;
+import Implementations.Bfs;
+import Implementations.Dfs;
 
 import java.io.IOException;
+import java.util.Queue;
 
 public class Main {
-//    public static void main(String[] args) throws IOException {
-//
-//    }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
+    public static void main(String[] args) throws IOException {
+        GrafosTDA grafoDfs = new ImplemEstatica();
+        grafoDfs.inicializarGrafo(6);
+        cargarGrafoDfs(grafoDfs);
 
-        int i, j, w;
+        System.out.println("Recorrido Grafo DFS");
+        System.out.println(":::::::::::::::::::::::::::::::::::");
 
-        ImplemEstatica grafo = new ImplemEstatica();
-        grafo.inicializarGrafo(10);
-        grafo.agregarVertice(1);
-        grafo.agregarVertice(2);
-        grafo.agregarVertice(3);
-        grafo.agregarVertice(4);
-        grafo.agregarVertice(5);
-        grafo.agregarVertice(6);;
-        grafo.agregarArista(1,4, 1);
-        grafo.agregarArista(1,5, 1);
-        grafo.agregarArista(2,4, 1);
-        grafo.agregarArista(2,6, 1);
-        grafo.agregarArista(3,5, 1);
-        grafo.agregarArista(4,1, 1);
-        grafo.agregarArista(4,2, 1);
-        grafo.agregarArista(5,1, 1);
-        grafo.agregarArista(5,3, 1);
-        grafo.agregarArista(5,6, 1);
-        grafo.agregarArista(6,2, 1);
-        grafo.agregarArista(6,5, 1);
+        Dfs dfs = new Dfs(grafoDfs);
+        dfs.routeFrom(1);
+        dfs.printRoute();
 
+        // ______________________________________________________/
 
+        System.out.println("Recorrido Grafo BFS");
+        System.out.println(":::::::::::::::::::::::::::::::::::");
 
-        grafo.mostrarMatriz();
-        System.out.println("=========");
+        GrafosTDA grafoBfs = new ImplemEstatica();
+        grafoBfs.inicializarGrafo(8);
+        Queue<Integer> bfsRoute = Bfs.routeFrom(grafoBfs, 2);
+        Bfs.printRoute(bfsRoute);
 
-        int[] ady = grafo.adyacentes(1);
+        // ______________________________________________________/
 
-        int[] p = new int[10];
+        System.out.println("Recorrido Grafo Dijkstra");
+        System.out.println(":::::::::::::::::::::::::::::::::::");
 
-        String marca[] = new String[10];
-
-        for(w=0; w < marca.length; w++) {
-            marca[w] = "B";
-        }
-
-        int[] dfs = DFS(grafo, 1, p, marca);
-
-        for(j=1; j<dfs.length; j++) {
-            System.out.println(dfs[j]);
-        }
     }
 
-    public static int[] DFS(ImplemEstatica grafo, int origen, int[]p, String[] marca) {
-        //int[] ady = grafo.adyacentes(origen);
+    public static void cargarGrafoDfs(GrafosTDA g){
+        g.agregarVertice(1);
+        g.agregarVertice(2);
+        g.agregarVertice(3);
+        g.agregarVertice(4);
+        g.agregarVertice(5);
+        g.agregarVertice(6);;
+        g.agregarArista(1,4, 1);
+        g.agregarArista(1,5, 1);
+        g.agregarArista(2,4, 1);
+        g.agregarArista(2,6, 1);
+        g.agregarArista(3,5, 1);
+        g.agregarArista(4,1, 1);
+        g.agregarArista(4,2, 1);
+        g.agregarArista(5,1, 1);
+        g.agregarArista(5,3, 1);
+        g.agregarArista(5,6, 1);
+        g.agregarArista(6,2, 1);
+        g.agregarArista(6,5, 1);
+    }
 
-
-        marca[origen] = "G";
-
-        for (int v: grafo.adyacentes(origen))
-            if(marca[v] == "B") {
-                p[v] = origen;
-                DFS(grafo, v, p, marca);
-            }
-
-        marca[origen] = "N";
-
-        return p;
-
+    public void cargarGrafoBfs(GrafosTDA g) {
+        g.agregarVertice(1);
+        g.agregarVertice(2);
+        g.agregarVertice(3);
+        g.agregarVertice(4);
+        g.agregarVertice(5);
+        g.agregarVertice(6);
+        g.agregarVertice(7);
+        g.agregarVertice(8);
+        g.agregarArista(1,3, 1);
+        g.agregarArista(2,1, 3);
+        g.agregarArista(2,4, 5);
+        g.agregarArista(3,5, 1);
+        g.agregarArista(5,6, 2);
+        g.agregarArista(5,7, 1);
+        g.agregarArista(6,8, 5);
+        g.agregarArista(7,6, 3);
+        g.agregarArista(7,8, 2);
     }
 }
