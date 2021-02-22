@@ -2,6 +2,7 @@ import Grafos.GrafosTDA;
 import Grafos.ImplemEstatica;
 import Implementations.Bfs;
 import Implementations.Dfs;
+import Implementations.Floyd;
 
 import java.io.IOException;
 import java.util.Queue;
@@ -27,14 +28,22 @@ public class Main {
 
         GrafosTDA grafoBfs = new ImplemEstatica();
         grafoBfs.inicializarGrafo(8);
+        cargarGrafoBfs(grafoBfs);
         Queue<Integer> bfsRoute = Bfs.routeFrom(grafoBfs, 2);
         Bfs.printRoute(bfsRoute);
 
         // ______________________________________________________/
 
-        System.out.println("Recorrido Grafo Dijkstra");
+        System.out.println("Matriz de Costos Floyd");
         System.out.println(":::::::::::::::::::::::::::::::::::");
 
+        GrafosTDA grafoFlyd = new ImplemEstatica();
+        grafoFlyd.inicializarGrafo(8);
+        cargarGrafoFloyd(grafoFlyd);
+
+        Floyd floyd = new Floyd(grafoFlyd.matriz());
+        floyd.play();
+        grafoFlyd.mostrarMatriz();
     }
 
     public static void cargarGrafoDfs(GrafosTDA g){
@@ -58,7 +67,27 @@ public class Main {
         g.agregarArista(6,5, 1);
     }
 
-    public void cargarGrafoBfs(GrafosTDA g) {
+    public static void cargarGrafoBfs(GrafosTDA g) {
+        g.agregarVertice(1);
+        g.agregarVertice(2);
+        g.agregarVertice(3);
+        g.agregarVertice(4);
+        g.agregarVertice(5);
+        g.agregarVertice(6);
+        g.agregarVertice(7);
+        g.agregarVertice(8);
+        g.agregarArista(1,3, 1);
+        g.agregarArista(2,1, 1);
+        g.agregarArista(2,4, 1);
+        g.agregarArista(3,5, 1);
+        g.agregarArista(5,6, 1);
+        g.agregarArista(5,7, 1);
+        g.agregarArista(6,8, 1);
+        g.agregarArista(7,6, 1);
+        g.agregarArista(7,8, 1);
+    }
+
+    public static void cargarGrafoFloyd(GrafosTDA g) {
         g.agregarVertice(1);
         g.agregarVertice(2);
         g.agregarVertice(3);
